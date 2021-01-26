@@ -3,6 +3,7 @@ import org.eclipse.jface.action.StatusLineManager;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -17,11 +18,15 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.jface.fieldassist.ControlDecoration;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 
 public class NewJFace extends ApplicationWindow {
 	private Text txtName;
 	private Text txtPhone;
 	private Text txt_1;
+	private Text text;
 
 	/**
 	 * Create the application window.
@@ -52,11 +57,6 @@ public class NewJFace extends ApplicationWindow {
 			lblPhone.setBounds(10, 41, 56, 15);
 		}
 		{
-			Label lblGubun = new Label(container, SWT.NONE);
-			lblGubun.setBounds(10, 77, 56, 15);
-			lblGubun.setText("\uAD6C\uBD84 :");
-		}
-		{
 			txtName = new Text(container, SWT.BORDER);
 			txtName.setBounds(72, 7, 110, 21);
 		}
@@ -71,13 +71,20 @@ public class NewJFace extends ApplicationWindow {
 		}
 		{
 			Button btnAdd = new Button(container, SWT.NONE);
+			btnAdd.setImage(SWTResourceManager.getImage(NewJFace.class, "/javax/swing/plaf/metal/icons/Question.gif"));
 			btnAdd.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 				}
 			});
-			btnAdd.setBounds(72, 122, 76, 25);
+			btnAdd.setBounds(25, 106, 243, 73);
+			btnAdd.setSize(136,49);
 			btnAdd.setText("추가");
+		}
+		{
+			Label lblGubun = new Label(container, SWT.NONE);
+			lblGubun.setBounds(10, 77, 56, 15);
+			lblGubun.setText("구분 :");
 		}
 		
 		TabFolder tabFolder = new TabFolder(container, SWT.NONE);
@@ -102,7 +109,19 @@ public class NewJFace extends ApplicationWindow {
 			TabItem tbtm3 = new TabItem(tabFolder, SWT.NONE);
 			tbtm3.setText("세번째");
 		}
-
+		
+		text = new Text(container, SWT.BORDER);
+		text.setBounds(35, 157, 73, 21);
+		
+		ControlDecoration controlDecoration = new ControlDecoration(text, SWT.LEFT | SWT.TOP);
+		controlDecoration.setDescriptionText("Some description");
+		
+		Image image = FieldDecorationRegistry.
+	                getDefault().
+	                getFieldDecoration(FieldDecorationRegistry.DEC_ERROR_QUICKFIX).
+	                getImage();
+	      
+	      controlDecoration.setImage(image);
 		return container;
 	}
 
