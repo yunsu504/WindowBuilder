@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.StatusLineManager;
 import org.eclipse.jface.action.ToolBarManager;
@@ -71,12 +73,14 @@ public class NewJFace extends ApplicationWindow {
 		}
 		{
 			Button btnAdd = new Button(container, SWT.NONE);
-			btnAdd.setImage(SWTResourceManager.getImage(NewJFace.class, "/javax/swing/plaf/metal/icons/Question.gif"));
 			btnAdd.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
+					JOptionPane.showMessageDialog(null, "Hi Message");
 				}
 			});
+			btnAdd.setImage(SWTResourceManager.getImage(NewJFace.class, "/javax/swing/plaf/metal/icons/Question.gif"));
+			
 			btnAdd.setBounds(25, 106, 243, 73);
 			btnAdd.setSize(136,49);
 			btnAdd.setText("Ãß°¡");
