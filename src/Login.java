@@ -3,13 +3,18 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
+
+import java.io.InputStream;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.ProgressBar;
 public class Login {
 
 	protected Shell shell;
@@ -21,6 +26,7 @@ public class Login {
 	 * @param args
 	 */
 	static Connection connection = null;
+	private Label lblNewLabel;
 	
 	public static void main(String[] args) {
 	
@@ -55,21 +61,26 @@ public class Login {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(450, 300);
+		shell.setSize(624, 315);
 		shell.setText("SWT Application");
 		
 		Label lblUserName = new Label(shell, SWT.NONE);
-		lblUserName.setBounds(72, 69, 56, 15);
+		lblUserName.setFont(SWTResourceManager.getFont("¸¼Àº °íµñ", 12, SWT.BOLD));
+		lblUserName.setBounds(54, 68, 90, 31);
 		lblUserName.setText("UserName");
 		
 		Label lblPassword = new Label(shell, SWT.NONE);
-		lblPassword.setBounds(72, 134, 56, 15);
+		lblPassword.setFont(SWTResourceManager.getFont("¸¼Àº °íµñ", 12, SWT.BOLD));
+		lblPassword.setBounds(54, 131, 74, 32);
 		lblPassword.setText("Password");
 		
 		textUserName = new Text(shell, SWT.BORDER);
 		textUserName.setBounds(150, 53, 154, 46);
 		
 		Button btnLogin = new Button(shell, SWT.NONE);
+		Image img = SWTResourceManager.getImage(Login.class, "/img/ok-icon.png");
+		btnLogin.setImage(img);
+		
 		btnLogin.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -87,6 +98,10 @@ public class Login {
 					}
 					if (count == 1){
 						JOptionPane.showMessageDialog(null, "Login Successful");
+						shell.dispose();
+						EmployeeInfo emplInfo = new EmployeeInfo();
+						emplInfo.open();
+						
 					}else if (count > 1){
 						JOptionPane.showMessageDialog(null, "Duplicate UserInfo");
 					}else{
@@ -104,6 +119,10 @@ public class Login {
 		
 		textPassword = new Text(shell, SWT.BORDER | SWT.PASSWORD);
 		textPassword.setBounds(150, 117, 154, 46);
+		
+		lblNewLabel = new Label(shell, SWT.NONE);
+		lblNewLabel.setImage(SWTResourceManager.getImage(Login.class, "/img/Login-icon.png"));
+		lblNewLabel.setBounds(329, 10, 261, 230);
 
 	}
 }
