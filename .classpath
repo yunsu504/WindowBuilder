@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="C:/Users/user/Desktop/java/OOPSW/eclipse-jee-mars-2-win32-x86_64/eclipse/plugins/com.ibm.icu_54.1.1.v201501272100.jar" sourcepath="C:/Users/user/Desktop/java/OOPSW/eclipse-jee-mars-2-win32-x86_64/eclipse/plugins/com.ibm.icu_54.1.1.v201501272100.jar"/>
 	<classpathentry kind="lib" path="C:/Users/user/Desktop/java/OOPSW/eclipse-jee-mars-2-win32-x86_64/eclipse/plugins/org.eclipse.ui.forms_3.6.200.v20150506-2029.jar" sourcepath="C:/Users/user/Desktop/java/OOPSW/eclipse-jee-mars-2-win32-x86_64/eclipse/plugins/org.eclipse.ui.forms_3.6.200.v20150506-2029.jar"/>
 	<classpathentry kind="lib" path="C:/Users/user/Desktop/새 폴더/OOPSW/WindowBuilder/Resources/sqlite-jdbc-3.7.2.jar"/>
+	<classpathentry kind="lib" path="Resources/rs2xml.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
