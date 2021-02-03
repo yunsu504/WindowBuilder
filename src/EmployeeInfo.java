@@ -57,6 +57,7 @@ public class EmployeeInfo {
 	private Text txtSetName;
 	private Text txtSetSurname;
 	private Text txtSetAge;
+	private Button btnUpdate;
 	public void open() {
 		connection  = SqliteConnection.dbConnector();
 		Display display = Display.getDefault();
@@ -136,11 +137,11 @@ public class EmployeeInfo {
 		btnLoadTable.setText("Load Employee Data");
 		
 		lblSetEID = new Label(shell, SWT.NONE);
-		lblSetEID.setBounds(0, 69, 56, 15);
+		lblSetEID.setBounds(0, 69, 37, 15);
 		lblSetEID.setText("EID");
 		
 		lblSetName = new Label(shell, SWT.NONE);
-		lblSetName.setBounds(0, 111, 56, 15);
+		lblSetName.setBounds(0, 111, 37, 15);
 		lblSetName.setText("Name");
 		
 		lblSetSurname = new Label(shell, SWT.NONE);
@@ -148,7 +149,7 @@ public class EmployeeInfo {
 		lblSetSurname.setText("Surname");
 		
 		lblSetAge = new Label(shell, SWT.NONE);
-		lblSetAge.setBounds(0, 188, 56, 15);
+		lblSetAge.setBounds(0, 188, 37, 15);
 		lblSetAge.setText("Age");
 		
 		txtSetEID = new Text(shell, SWT.BORDER);
@@ -175,9 +176,30 @@ public class EmployeeInfo {
 					pstmt.setString(3, txtSetSurname.getText());
 					pstmt.setString(4, txtSetAge.getText());
 					
+					pstmt.execute();					
+					JOptionPane.showMessageDialog(null, "Saved Successful");
+					pstmt.close();
+					
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error");
+				}
+			}
+		});
+		btnSave.setBounds(10, 226, 63, 25);
+		btnSave.setText("SAVE");
+		
+		btnUpdate = new Button(shell, SWT.NONE);
+		btnUpdate.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					String sql = "Update EmployeeInfo set name='"+txtSetName.getText()+"', surname='"+txtSetSurname.getText()+"', age='"+txtSetAge.getText()+"' where EID = "+txtSetEID.getText();
+					PreparedStatement pstmt = connection.prepareStatement(sql);
+					
 					int rs = pstmt.executeUpdate();					 
 					if (rs >= 1 ){
-						JOptionPane.showMessageDialog(null, "Saved Successful");
+						JOptionPane.showMessageDialog(null, "Updated Successful");
 						
 					}
 					pstmt.close();
@@ -187,8 +209,8 @@ public class EmployeeInfo {
 				}
 			}
 		});
-		btnSave.setBounds(25, 226, 76, 25);
-		btnSave.setText("SAVE");
+		btnUpdate.setBounds(79, 226, 76, 25);
+		btnUpdate.setText("UPDATE");
 
 	}
 }
